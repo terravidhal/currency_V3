@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Convert.css';
-import country_list from '../../utils/country-list';
 import API_KEY from '../../utils/api-key';
 import axios from 'axios';
 import currencyapi from '@everapi/currencyapi-js'
@@ -73,7 +72,6 @@ const Convert = (props) => {
       .get(url)
       .then((res) => {
        // console.log("u++++++++++",res.data);
-       // console.log("u++++++++++", Object.values( res.data));
         setCountryInfos(Object.values( res.data));
 
        /* Object.values( res.data).forEach(elt => {
@@ -110,12 +108,11 @@ const Convert = (props) => {
   const  displayDropdown1 = (elt) =>{
    const dropdown = document.querySelector('ul.custom-dropdown.one');
    dropdown.classList.toggle('hide');
-}
+   }
   const  displayDropdown2 = (elt) =>{
    const dropdown = document.querySelector('ul.custom-dropdown.two');
    dropdown.classList.toggle('hide');
-}
-
+  }
 
   const  calcExchangeRate = async() =>{
     const getExchangeRate1 = new currencyapi(API_KEY)
@@ -123,14 +120,13 @@ const Convert = (props) => {
             base_currency: Object.keys(valueInput?.currencies || 'null').join(""),
             currencies: Object.keys(valueInput2?.currencies || 'null').join("")
     }).then(res => {
-          // console.log('RESSS',res);
-           console.log('RESSS+',res.data[Object.keys(valueInput2?.currencies || 'null').join("")]['value']);  // taux de change //ExchangeRate
+          // console.log('RESSS+',res.data[Object.keys(valueInput2?.currencies || 'null').join("")]['value']);  // taux de change //ExchangeRate
            setTotalExRate(amount * (res.data[Object.keys(valueInput2?.currencies || 'null').join("")]['value']));
-          setStatus1(true);
+           setStatus1(true);
           //isResultFunc(true)
     }).catch((err1) => {
         console.log('err1',err1);
-        //setError1(err1 || {})
+        setError1(err1)
     });
 
     const getExchangeRate2 = new currencyapi(API_KEY)
@@ -138,8 +134,7 @@ const Convert = (props) => {
             base_currency: Object.keys(valueInput2?.currencies || 'null').join(""),
             currencies: Object.keys(valueInput?.currencies || 'null').join("")
     }).then(res => {
-          // console.log('RESSS2',res);
-           console.log('RESSS2+',res.data[Object.keys(valueInput?.currencies || 'null').join("")]['value']);
+          // console.log('RESSS2+',res.data[Object.keys(valueInput?.currencies || 'null').join("")]['value']);
            setTotalExRate2(amount * (res.data[Object.keys(valueInput?.currencies || 'null').join("")]['value']));
           setStatus2(true);
     }).catch((err2) => {
@@ -210,7 +205,7 @@ const Convert = (props) => {
              </div>
        </div>
        {
-        true === true ?
+        true === true && error1 == {} ?
         <div className="convert-results">
            <div className="line1">{amount} {Object.keys(valueInput?.currencies || 'null').join("")} = </div>
            <div className="line2">
@@ -223,14 +218,17 @@ const Convert = (props) => {
               : null
             }
          </div> 
-          : null
+          : 
+          <div className="convert-results">
+           <div className="error">Something went wrong! please retry</div>
+           </div> 
        }
-       {
+       {/* {
         error1 ? 
         <div className="convert-results">
            <div className="error">Something went wrong! please retry</div>
         </div> : null
-       }
+       } */}
        <div className="convert-actions">
          <div className="notify">
             <div className="notify-icon">

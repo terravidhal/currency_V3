@@ -9,9 +9,7 @@ import Results from '../Results/Results';
 
 
 const BoxConverter = () => {
-
   const [ isResult, setIsResult ] = useState(false);
-
 
   const isResultFunc = (val) =>{
     setIsResult(val)
@@ -24,12 +22,10 @@ const BoxConverter = () => {
     { title: "Alerts", content: <Alerts/> },
   ];
 
-  
   const [ allTabs, setAllTabs ] = useState(tabsArray);
 
   const [ currentTabIndex, setCurrentTabIndex ] = useState(0);
 
-  
 
   return(
     <div className={isResult === false ?"BoxConverter": "BoxConverter cvrt"}>
