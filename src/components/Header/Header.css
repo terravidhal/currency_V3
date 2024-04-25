@@ -22,21 +22,20 @@
 position: absolute;
 width: 869px;
 height: 869px;
-left: 1144px;
+right: 0;
 top: -207px;
-/* Foundation /Yellow/Normal :hover */
 background: #DF8720;
-
+border-radius: 50%;
 
 }
 .Header .circle2{
    position: absolute;
-   background-color: #04001e;
+   background-color: #211535;
    height: 500px;
    width: 500px;
    border-radius: 50%;
    top: -50px;
-   right: -150px;
+   right: 150px;
 }
 .Header .circle3{
 position: absolute;
@@ -46,6 +45,15 @@ left: -134px;
 top: -41px;
 background: #DF8720;
 border-radius: 50%;
+}
+.Header .circle4{
+  position: absolute;
+  width: 285px;
+  height: 285px;
+  left: -120px;
+  top: 10px;
+  background: #211535;
+  border-radius: 50%;
 }
 .Header .title{
    padding-top: 70px;

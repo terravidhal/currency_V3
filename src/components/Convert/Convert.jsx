@@ -106,20 +106,6 @@ const Convert = () => {
 
 
 
-  
-
- /* const  loadFlagAuto = (elt) =>{
-    let code = ''
-   for (const key in country_list) {
-    if (Object.hasOwnProperty.call(country_list, key)) {
-      if (elt === key) {
-        code = country_list[key];
-      }
-    }
-   }
-   return code;
-}*/
-
   const  displayDropdown1 = (elt) =>{
    const dropdown = document.querySelector('ul.custom-dropdown.one');
    dropdown.classList.toggle('hide');
@@ -153,6 +139,7 @@ const Convert = () => {
           setStatus1(true);
     }).catch((err1) => {
         console.log('err1',err1);
+        //setError1(err1 || {})
     });
 
     const getExchangeRate2 = new currencyapi(API_KEY)
@@ -219,7 +206,7 @@ const Convert = () => {
                         <li
                           key={Object.values(elt?.name || 'null')[0]}
                           onClick={() => {
-                            setValueInput(elt);
+                            setValueInput2(elt);
                             displayDropdown2();
                           }}
                         >
@@ -231,17 +218,8 @@ const Convert = () => {
                  </div>
              </div>
        </div>
-       {/* <div className="convert-results">
-           <div className="line1">{"1.00"} {"USD"} = </div>
-           <div className="line2">
-             <span className="nb1">{0.93},</span>
-             <span className="nb2">{"000000"}  </span>
-             <span className="nb3">{"EUR"}</span>
-           </div>
-            <div className="line3">{"1"} {"EUR"} =  {"1.225552222"} {"USD"} </div>
-         </div>  */}
        {
-        status1 === true ?
+        true === true ?
         <div className="convert-results">
            <div className="line1">{amount} {Object.keys(valueInput?.currencies || 'null').join("")} = </div>
            <div className="line2">
@@ -249,7 +227,7 @@ const Convert = () => {
            <span className="nb2">{totalExRate.toFixed(8).toString().split('.')[1]}  </span>
            <span className="nb3">{Object.keys(valueInput2?.currencies || 'null').join("")}</span>
            </div>
-            { status2 === true ? 
+            { true === true ? 
               <div className="line3">{amount} {Object.keys(valueInput2?.currencies || 'null').join("")} =  {totalExRate2.toFixed(8)} {Object.keys(valueInput?.currencies || 'null').join("")} </div>
               : null
             }
