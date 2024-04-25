@@ -29,13 +29,13 @@ border-radius: 50%;
 
 }
 .Header .circle2{
-   position: absolute;
-   background-color: #211535;
-   height: 500px;
-   width: 500px;
-   border-radius: 50%;
-   top: -50px;
-   right: 150px;
+  position: absolute;
+  background-color: #211535;
+  height: 600px;
+  width: 600px;
+  border-radius: 50%;
+  top: -50px;
+  right: 80px;
 }
 .Header .circle3{
 position: absolute;
@@ -48,13 +48,21 @@ border-radius: 50%;
 }
 .Header .circle4{
   position: absolute;
-  width: 285px;
-  height: 285px;
-  left: -120px;
-  top: 10px;
+  width: 260px;
+  height: 260px;
+  left: -100px;
+  top: 20px;
   background: #211535;
   border-radius: 50%;
 }
+.Header .circle5{
+  position: absolute;
+  width: 76px;
+  height: 420px;
+  right: 0px;
+  top: 0px;
+  background: #DF8720;
+  }
 .Header .title{
    padding-top: 70px;
    position: relative;

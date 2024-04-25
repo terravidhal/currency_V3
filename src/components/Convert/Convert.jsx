@@ -6,7 +6,8 @@ import axios from 'axios';
 import currencyapi from '@everapi/currencyapi-js'
 
 
-const Convert = () => {
+const Convert = (props) => {
+  const {isResultFunc} = props;
   const [OfCurrencyCountry, setOfCurrencyCountry] = useState("USD");
   const [toCurrencyCountry, setToCurrencyCountry] = useState("EUR");
   const [amount, setAmount] = useState(1);
@@ -117,17 +118,6 @@ const Convert = () => {
 
 
   const  calcExchangeRate = async() =>{
-
-   /* try {
-      const getCurrecyCountry = new currencyapi(API_KEY)
-      const currency_country = await getCurrecyCountry.currencies();
-      console.log('currency_country', currency_country.data);
-      //console.log('currency_country', Object.keys(currency_country.data));
-    } catch (error) {
-      console.log(error); 
-    } */
-   
-
     const getExchangeRate1 = new currencyapi(API_KEY)
     getExchangeRate1.latest({
             base_currency: Object.keys(valueInput?.currencies || 'null').join(""),
@@ -137,6 +127,7 @@ const Convert = () => {
            console.log('RESSS+',res.data[Object.keys(valueInput2?.currencies || 'null').join("")]['value']);  // taux de change //ExchangeRate
            setTotalExRate(amount * (res.data[Object.keys(valueInput2?.currencies || 'null').join("")]['value']));
           setStatus1(true);
+          //isResultFunc(true)
     }).catch((err1) => {
         console.log('err1',err1);
         //setError1(err1 || {})

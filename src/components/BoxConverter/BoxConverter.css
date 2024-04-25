@@ -1,17 +1,39 @@
-.BoxConverter {
+.BoxConverter.cvrt{
   z-index: 99;
   /* width: 950px; */
   width: 1152px;
-  /* min-height: 330.833px; */
-  height: 445.75px;
+   min-height: 330.833px; 
+ /* min-height: 445.75px;*/
   /* min-height: 105px; */
   background-color: #FFFFFF;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -70%);
+  /* transform: translate(-50%, -70%); */
+  transform: translate(-50%, -100%);
   border-radius: 8px;
   box-shadow: 0px 6px 12px rgba(35, 55, 80, 0.3);
+  /**/
+  /* div.sc-d5cf72bb-0 */
+}
+.BoxConverter {
+  z-index: 99;
+  /* width: 950px; */
+  width: 1152px;
+   min-height: 330.833px; 
+ /* min-height: 445.75px;*/
+  /* min-height: 105px; */
+  background-color: #FFFFFF;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* transform: translate(-50%, -70%); */
+  /* transform: translate(-50%, -135%); */
+  transform: translate(-50%, -102%);
+  border-radius: 8px;
+  box-shadow: 0px 6px 12px rgba(35, 55, 80, 0.3);
+  /**/
+  /* div.sc-d5cf72bb-0 */
 }
 .BoxConverter input{
    border: 1px solid;

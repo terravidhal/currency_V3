@@ -10,8 +10,15 @@ import Results from '../Results/Results';
 
 const BoxConverter = () => {
 
+  const [ isResult, setIsResult ] = useState(false);
+
+
+  const isResultFunc = (val) =>{
+    setIsResult(val)
+  }
+
   const tabsArray = [
-    { title: "Convert", content: <Convert/> },
+    { title: "Convert", content: <Convert isResultFunc={isResultFunc}/> },
     { title: "Send", content: <Send/> },
     { title: "Graphics", content: <Graphics/> },
     { title: "Alerts", content: <Alerts/> },
@@ -22,8 +29,10 @@ const BoxConverter = () => {
 
   const [ currentTabIndex, setCurrentTabIndex ] = useState(0);
 
+  
+
   return(
-    <div className="BoxConverter">
+    <div className={isResult === false ?"BoxConverter": "BoxConverter cvrt"}>
        <Tab 
         allTabs={ allTabs } 
         currentTabIndex={ currentTabIndex }

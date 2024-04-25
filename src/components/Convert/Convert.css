@@ -18,6 +18,7 @@
  cursor: pointer;
 }
 .Convert .cvrt i{
+  color: gray;
  position: absolute;
  right: 10px;
 }
@@ -227,7 +228,8 @@ color: #211535;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 24px;
+  /* margin-top: 24px; */
+  margin-top: 44px;
 }
 .Convert .validate-btn button{
   cursor: pointer;
