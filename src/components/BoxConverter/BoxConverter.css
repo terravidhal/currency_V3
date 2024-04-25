@@ -54,7 +54,8 @@
   cursor: pointer;
 }
 .BoxConverter .tb.selectedTab {
-  color: rgb(0, 111, 232);
+  /* color: rgb(0, 111, 232); */
+  color: #472E72;
   background-color: white;
   font-weight: bold;
 }
@@ -62,7 +63,8 @@
 .BoxConverter .tb.selectedTab .img1 ,
 .BoxConverter .tb.selectedTab .img2,
 .BoxConverter .tb.selectedTab .img3    {
-  filter: invert(38%) sepia(73%) saturate(7498%) hue-rotate(201deg) brightness(97%) contrast(101%);
+  /* filter: invert(38%) sepia(73%) saturate(7498%) hue-rotate(201deg) brightness(97%) contrast(101%); */
+  filter: invert(23%) sepia(24%) saturate(1631%) hue-rotate(221deg) brightness(88%) contrast(98%);
 }
 .BoxConverter .tb.nonSelectedTab .img0,
 .BoxConverter .tb.nonSelectedTab .img1 ,
