@@ -1,0 +1,92 @@
+.Header {
+   /* height: 50vh; */
+  /* background-color: #04001e;*/
+   background-color: #211535;
+   /* position: relative; */
+   height: 410px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Header .circle1{
+ /*  position: absolute;
+   background-color: orange;
+  height: 600px;
+   width: 600px;
+   border-radius: 50%;
+   top: -95px;
+   right: -94px;*/
+
+/* elips */
+
+position: absolute;
+width: 869px;
+height: 869px;
+left: 1144px;
+top: -207px;
+/* Foundation /Yellow/Normal :hover */
+background: #DF8720;
+
+
+}
+.Header .circle2{
+   position: absolute;
+   background-color: #04001e;
+   height: 500px;
+   width: 500px;
+   border-radius: 50%;
+   top: -50px;
+   right: -150px;
+}
+.Header .circle3{
+position: absolute;
+width: 376px;
+height: 376px;
+left: -134px;
+top: -41px;
+background: #DF8720;
+border-radius: 50%;
+}
+.Header .title{
+   padding-top: 70px;
+   position: relative;
+   z-index: 99;
+}
+.Header .titles{
+  width: 653px;
+  height: 39px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Header .title1{
+ /* font-size: 2.8rem;
+  font-weight: 600;
+  opacity: 0.8;*/
+  /* PayUnit Currency Converter */
+
+width: 653px;
+height: 39px;
+font-weight: 600;
+font-size: 48px;
+line-height: 39px;
+/* identical to box height, or 81% */
+color: #FFFFFF;
+}
+.Header .title2{
+  /*opacity: 0.5;
+  font-size: 1.1rem;*/
+  /* Welcome to the world's most popular money tool. */
+
+width: 374px;
+height: 43px;
+font-weight: 400;
+font-size: 16px;
+line-height: 43px;
+}
+
+
+
+
+
+
