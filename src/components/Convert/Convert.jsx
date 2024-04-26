@@ -7,8 +7,6 @@ import currencyapi from '@everapi/currencyapi-js'
 
 const Convert = (props) => {
   const {isResultFunc} = props;
-  const [OfCurrencyCountry, setOfCurrencyCountry] = useState("USD");
-  const [toCurrencyCountry, setToCurrencyCountry] = useState("EUR");
   const [amount, setAmount] = useState(1);
   const [valueInput, setValueInput] = useState({
     "currencies": { "USD": { "name": "United States dollar", "symbol": "$" } },
@@ -31,8 +29,6 @@ const Convert = (props) => {
   const [status1, setStatus1] = useState(false);
   const [status2, setStatus2] = useState(false);
   const [error1, setError1] = useState("");
-  const select1 = document.querySelector("form select#of");
-  const select2 = document.querySelector("form select#toward");
 
 
   useEffect(() => {
@@ -40,7 +36,6 @@ const Convert = (props) => {
     axios
       .get(url)
       .then((res) => {
-       // console.log("u++++++++++",res.data);
         setCountryInfos(Object.values( res.data));
       })
       .catch((err) => {
@@ -57,18 +52,23 @@ const Convert = (props) => {
     console.log('test');
     const lastOfCurrencyCountry = valueInput;
     const lastToCurrencyCountry = valueInput2;
+    const lastTotalExRate = totalExRate;
+    const lastTotalExRate2 = totalExRate2;
     let stats = false
 
     if (stats === false) {
       setValueInput(lastToCurrencyCountry);
       setValueInput2(lastOfCurrencyCountry);
+      setTotalExRate(lastTotalExRate2);
+      setTotalExRate2(lastTotalExRate);
       stats = true;
     } else {
       setValueInput(lastOfCurrencyCountry);
       setValueInput2(lastToCurrencyCountry);
+      setTotalExRate(lastTotalExRate);
+      setTotalExRate2(lastTotalExRate2);
       stats = false;
     }
-    calcExchangeRate(); // update  calcExchangeRate;
   }
 
 
@@ -87,7 +87,6 @@ const Convert = (props) => {
             base_currency: Object.keys(valueInput?.currencies || 'null').join(""),
             currencies: Object.keys(valueInput2?.currencies || 'null').join("")
     }).then(res => {
-          // console.log('RESSS+',res.data[Object.keys(valueInput2?.currencies || 'null').join("")]['value']);  // taux de change //ExchangeRate
            setTotalExRate(amount * (res.data[Object.keys(valueInput2?.currencies || 'null').join("")]['value']));
            setStatus1(true);
           //isResultFunc(true)
@@ -101,7 +100,6 @@ const Convert = (props) => {
             base_currency: Object.keys(valueInput2?.currencies || 'null').join(""),
             currencies: Object.keys(valueInput?.currencies || 'null').join("")
     }).then(res => {
-          // console.log('RESSS2+',res.data[Object.keys(valueInput?.currencies || 'null').join("")]['value']);
            setTotalExRate2(amount * (res.data[Object.keys(valueInput?.currencies || 'null').join("")]['value']));
           setStatus2(true);
     }).catch((err2) => {
