@@ -30,40 +30,9 @@ const Convert = (props) => {
   const [totalExRate2, setTotalExRate2] = useState(0);
   const [status1, setStatus1] = useState(false);
   const [status2, setStatus2] = useState(false);
-  const [statusToggle, setStatusToggle] = useState(false);
   const [error1, setError1] = useState("");
- // const [error2, setError2] = useState("");
   const select1 = document.querySelector("form select#of");
   const select2 = document.querySelector("form select#toward");
-
-  const onSubmitHandler = async(e) => {
-    e.preventDefault();
-    calcExchangeRate();
-  }
-
-  const toggleExchangeRate = () =>{
-    console.log('test');
-     const lastToCurrencyCountry = toCurrencyCountry;
-     const lastOfCurrencyCountry = OfCurrencyCountry;
-
-   
-    if (statusToggle === false) {
-      select1.value = lastToCurrencyCountry ;
-     // setOfCurrencyCountry(lastToCurrencyCountry);
-      select2.value = lastOfCurrencyCountry ;
-     // setToCurrencyCountry(lastOfCurrencyCountry);
-      setStatusToggle(true)
-    } else {
-       select1.value = lastOfCurrencyCountry ;
-      //setOfCurrencyCountry(lastOfCurrencyCountry);
-      select2.value = lastToCurrencyCountry ;
-      //  setToCurrencyCountry(lastToCurrencyCountry);
-      setStatusToggle(false)
-    }
-   
-  }
-
-
 
 
   useEffect(() => {
@@ -73,36 +42,34 @@ const Convert = (props) => {
       .then((res) => {
        // console.log("u++++++++++",res.data);
         setCountryInfos(Object.values( res.data));
-
-       /* Object.values( res.data).forEach(elt => {
-          console.log(Object.values(elt?.flag || 'null'))
-        });*/
-       
-
-      /* res.data.forEach(elt => {
-          setCountryInfos(prevState => [...prevState, elt]);
-         for (const key in elt.currencies) {
-          if (Object.hasOwnProperty.call(elt.currencies, key)) {
-            const element = elt.currencies[key];
-            setCountryCurrent(prevState => [...prevState, key]);
-            setCountryName(prevState => [...prevState, element]);
-
-             // console.log(Object.values(elt?.name || 'null')[0])
-                              //console.log(Object.values(elt?.flags || 'null')[1])
-                             // console.log(Object.values(elt?.flags || 'null')[0])
-                              //console.log(Object.values(elt?.currencies || 'null')[0].name)
-                             // console.log(Object.values(elt?.currencies || 'null')[0].symbol)
-                              //console.log(elt?.currencies?.name  || 'null')
-                              //console.log(Object.keys(elt?.currencies || 'null').join(""))
-          }
-         }
-        });*/
       })
       .catch((err) => {
         console.log(err);
       }); 
   }, []);
 
+  const onSubmitHandler = async(e) => {
+    e.preventDefault();
+    calcExchangeRate();
+  }
+
+  const toggleExchangeRate = () =>{
+    console.log('test');
+    const lastOfCurrencyCountry = valueInput;
+    const lastToCurrencyCountry = valueInput2;
+    let stats = false
+
+    if (stats === false) {
+      setValueInput(lastToCurrencyCountry);
+      setValueInput2(lastOfCurrencyCountry);
+      stats = true;
+    } else {
+      setValueInput(lastOfCurrencyCountry);
+      setValueInput2(lastToCurrencyCountry);
+      stats = false;
+    }
+    calcExchangeRate(); // update  calcExchangeRate;
+  }
 
 
   const  displayDropdown1 = (elt) =>{
@@ -125,8 +92,8 @@ const Convert = (props) => {
            setStatus1(true);
           //isResultFunc(true)
     }).catch((err1) => {
-        console.log('err1',err1);
-        setError1(err1)
+        console.log('err1',err1.message);
+        setError1(err1.message || 'err')
     });
 
     const getExchangeRate2 = new currencyapi(API_KEY)
@@ -143,16 +110,14 @@ const Convert = (props) => {
   }  
 
 
- 
-
-
   return (
     <div className="Convert">
       <form onSubmit={onSubmitHandler}>
        <div className="convert-inputs flex">
              <div className="cvrt amount">
                  <label htmlFor="amount">Amount</label>
-                 <input id='amount' type="text" value={amount} onChange={(e)=>setAmount(e.target.value)}/>
+                 <input id='amount' type="text" value={amount.toFixed(2)} onChange={(e)=>setAmount(e.target.value)}/>
+                 <span className="symbols">{ Object.values(valueInput?.currencies || 'null')[0].symbol}</span>
              </div>
               <div className="cvrt of">
                  <label htmlFor="of">Of</label>
@@ -205,13 +170,13 @@ const Convert = (props) => {
              </div>
        </div>
        {
-        true === true && error1 == {} ?
+        true === true && error1 === "" ?
         <div className="convert-results">
-           <div className="line1">{amount} {Object.keys(valueInput?.currencies || 'null').join("")} = </div>
+           <div className="line1">{amount} {Object.values(valueInput?.currencies || 'null')[0].name} = </div>
            <div className="line2">
            <span className="nb1">{totalExRate.toFixed(8).toString().split('.')[0]},</span>
            <span className="nb2">{totalExRate.toFixed(8).toString().split('.')[1]}  </span>
-           <span className="nb3">{Object.keys(valueInput2?.currencies || 'null').join("")}</span>
+           <span className="nb3">{Object.values(valueInput2?.currencies || 'null')[0].name}</span>
            </div>
             { true === true ? 
               <div className="line3">{amount} {Object.keys(valueInput2?.currencies || 'null').join("")} =  {totalExRate2.toFixed(8)} {Object.keys(valueInput?.currencies || 'null').join("")} </div>
@@ -223,12 +188,6 @@ const Convert = (props) => {
            <div className="error">Something went wrong! please retry</div>
            </div> 
        }
-       {/* {
-        error1 ? 
-        <div className="convert-results">
-           <div className="error">Something went wrong! please retry</div>
-        </div> : null
-       } */}
        <div className="convert-actions">
          <div className="notify">
             <div className="notify-icon">
