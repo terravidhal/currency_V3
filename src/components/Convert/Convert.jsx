@@ -7,7 +7,7 @@ import currencyapi from '@everapi/currencyapi-js'
 
 const Convert = (props) => {
   const {isResultFunc} = props;
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState((1).toFixed(2));
   const [valueInput, setValueInput] = useState({
     "currencies": { "USD": { "name": "United States dollar", "symbol": "$" } },
     "flags": {
@@ -114,7 +114,7 @@ const Convert = (props) => {
        <div className="convert-inputs flex">
              <div className="cvrt amount">
                  <label htmlFor="amount">Amount</label>
-                 <input id='amount' type="text" value={amount.toFixed(2)} onChange={(e)=>setAmount(e.target.value)}/>
+                 <input id='amount' type="text" value={amount} onChange={(e)=>setAmount(e.target.value)}/>
                  <span className="symbols">{ Object.values(valueInput?.currencies || 'null')[0].symbol}</span>
              </div>
               <div className="cvrt of">
@@ -189,7 +189,7 @@ const Convert = (props) => {
        <div className="convert-actions">
          <div className="notify">
             <div className="notify-icon">
-             <img src="../src/assets/infos.svg" alt="" />
+             <img src="../src/assets/inf.svg" alt="" />
             </div>
             <div className="notify-resume">
             We use the mid-market rate for our converter. 
